@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}My Index Page{% endblock %}
+
+{% block content %}
+<div class="center" style="margin:20vh 20vw 15vh;
+border: 5px solid #080808;padding: 10px;border-radius: 1%;">
+    <h1>HELLO ADMIN</h1>
+    <hr style="border:1px solid black">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio debitis veritatis aut soluta recusandae,
+        beatae impedit modi illo itaque. Ullam, consectetur labore dolorum quis perferendis quisquam molestias ad
+        nostrum repudiandae.</p>
+    <div class="btncenter" style="margin: 5vh 20vw;">
+        <button type="button" class="btn btn-outline-primary" style="margin-right:1vw ;">Sign - Up</button>
+        <button type="button" class="btn btn-outline-primary">Login</button>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: rgba(0, 0, 0, 0.329);
+    }
+
+    .center {
+        background-color: rgba(128, 128, 128, 0.39);
+    }
+</style>
+{% endblock %}
