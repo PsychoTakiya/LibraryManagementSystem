@@ -6,3 +6,10 @@ def index(request):
 
 def booksDisplay(request):
     return render(request,'booksdisplay.html')
+
+def booksUpdation(request):
+    
+    return render(request,'booksupdation.html')
+
+def custUpdation(request):
+    return render(request,'customerupdation.html')
