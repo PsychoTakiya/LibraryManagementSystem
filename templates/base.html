@@ -21,7 +21,7 @@
 
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="home" class="nav-link px-2 text-secondary">Home</a></li>
           <li><a href="display" class="nav-link px-2 text-white">Books</a></li>
           <li><a href="updation" class="nav-link px-2 text-white">Books Updation</a></li>
           <li><a href="custUpdation" class="nav-link px-2 text-white">Customers</a></li>
@@ -30,8 +30,12 @@
 
 
         <div class="text-end">
-
-          <button type="submit" class="btn btn-outline-warning me-2">Logout</button>
+          {% if user.is_authenticated %}
+          <form action="{% url 'logoutUser' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-warning me-2">Logout</button>
+          </form>
+          {% endif %}
 
         </div>
       </div>

@@ -1,11 +1,20 @@
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render, HttpResponse, HttpResponseRedirect
 from LMS.models import Books, Readers
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm , User
+from django.contrib.auth import authenticate, login as dj_login, logout
+
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html');
 
 def booksDisplay(request):
-    return render(request,'booksdisplay.html')
+    dispBooks = Books.objects.all()
+    display = {
+        "display_books" : dispBooks
+    }
+
+    return render(request,'booksdisplay.html',display)
 
 def booksUpdation(request):
     if request.method == "POST":
@@ -63,5 +72,25 @@ def readersDeletion(request):
             print("not present")
 
 def login(request):
-    
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username = username,password = password)
+        if user is not None:
+            dj_login(request, user)
+            print("logged in")
+            return redirect("home")
+        else:
+            print("failed")
+            return render(request, "login.html")
+    print("oops")
+    return render(request,'login.html')
+
+def logoutUser(request):
+    if request.method == "POST":
+        print("logout")
+        logout(request)
+        return redirect('login')
+
+
 

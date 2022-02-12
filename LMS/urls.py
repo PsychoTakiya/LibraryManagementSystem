@@ -4,7 +4,11 @@ from django.urls import path, include
 from LMS import views
 
 urlpatterns = [
-    path('', views.index, name='home'),
+    path('', views.login, name='login'),
+    path('logoutUser', views.logoutUser, name='logoutUser'),
+
+    path('home', views.index, name='home'),
+    
     path('display', views.booksDisplay, name='booksDisplay'),
     path('updation', views.booksUpdation, name='booksUpdation'),
     path('booksDeletion', views.booksDeletion, name='booksDeletion'),
@@ -13,7 +17,7 @@ urlpatterns = [
     path('custUpdation', views.custUpdation, name='custUpdation'),
     path('readersDeletion', views.readersDeletion, name='readersDeletion'),
 
-    path('login', views.login, name='login'),
+    
 
 
 
