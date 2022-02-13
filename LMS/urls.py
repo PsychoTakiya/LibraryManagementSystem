@@ -17,6 +17,11 @@ urlpatterns = [
     path('custUpdation', views.custUpdation, name='custUpdation'),
     path('readersDeletion', views.readersDeletion, name='readersDeletion'),
 
+    path('history', views.history, name='history'),
+    path('borrow', views.borrow, name='borrow'),
+
+
+
     
 
 

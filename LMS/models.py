@@ -16,4 +16,13 @@ class Readers(models.Model):
 
     def __str__(self):
         return self.readersName
+
+class Borrowers(models.Model):
+    bId = models.CharField(max_length=322)
+    bkName = models.CharField(max_length=322)
+    rName = models.CharField(max_length=322)
+    bdate = models.DateField(null=True)
+
+    def __str__(self):
+        return self.bId
     

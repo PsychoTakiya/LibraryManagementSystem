@@ -1,7 +1,11 @@
 from django.shortcuts import redirect, render, HttpResponse, HttpResponseRedirect
-from LMS.models import Books, Readers
+from matplotlib.style import context
+from LMS.models import Books, Readers, Borrowers
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm , User
 from django.contrib.auth import authenticate, login as dj_login, logout
+from django.contrib import messages
+import uuid
+from datetime import date, datetime
 
 
 # Create your views here.
@@ -26,9 +30,11 @@ def booksUpdation(request):
         books = Books(booksName=booksName, author=author, publisher = publisher )
         print(booksName,author,publisher)
         books.save()
+
+        
         return HttpResponseRedirect('updation') #to prevent adding previous records from getting saved
-	
-    return render(request,'booksupdation.html')
+    
+    return render(request,'booksupdation.html', )
 
 def booksDeletion(request):
     if request.method == "POST":
@@ -70,6 +76,40 @@ def readersDeletion(request):
 			
         else :
             print("not present")
+
+
+def history(request):
+    borrowRec = Borrowers.objects.all()
+    context = {
+        "display" : borrowRec
+    }
+    return render(request,"history.html", context)
+
+def borrow(request):
+    if request.method == "POST":
+        bId = uuid.uuid4().hex[:6].upper()
+        bName = request.POST.get('booksName')
+        rName = request.POST.get('readersName')
+        
+
+        borrowers = Borrowers(bId = bId, bkName = bName, rName = rName, bdate = datetime.today())
+        print(borrowers)
+        print(bId, bName , rName)
+        borrowers.save()
+        HttpResponseRedirect('borrow')
+
+    
+    bookname = Books.objects.all()
+    readers = Readers.objects.all()
+        
+
+   # bookname = getattr(objects, 'Books')
+    #print(objects,bookname)
+    context = {
+        "dispbook" : bookname,
+        "dispreaders" : readers
+    }
+    return render(request,"borrow.html", context)
 
 def login(request):
     if request.method == "POST":

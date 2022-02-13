@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}My Index Page{% endblock title %}
+
+{% block content %}
+
+<h1 style="text-align: center;">Borrow Record</h1>
+<hr style="border: 1px solid black;  margin: 1% 20% 2%;">
+
+
+<div class="container my-2">
+    <h1 style="text-align: center;">Add Books</h1>
+
+
+    <form id="libraryForm" method="POST" action="/borrow" {{is.valid}}>
+        {% csrf_token %}
+
+
+
+
+        <div class="mb-3">
+            <label for="booksName" class="form-label">Book Name</label>
+            <select id="booksName" class="form-select" name="booksName">
+
+                <option selected>Choose...</option>
+                {% for x in dispbook %}
+                <option>{{ x.booksName }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="readersName" class="form-label">Reader Name</label>
+            <select id="readersName" class="form-select" name="readersName">
+                <option selected>Choose...</option>
+                {% for x in dispreaders %}
+
+                <option>{{ x.readersName }}</option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="form-group row">
+            <div class="col-sm-10" style="justify-content: center; display: flex;margin: auto;">
+                {% csrf_token %}
+                <button type="submit" formaction="/borrow" formmethod="POST"
+                    class="btn btn-outline-primary col-sm-3 mx-2">Borrowing</button>
+                <button type="submit" formaction="/borrow" formmethod="POST"
+                    class="btn btn-outline-info col-sm-3">Returned</button>
+
+                {% csrf_token %}
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock content %}

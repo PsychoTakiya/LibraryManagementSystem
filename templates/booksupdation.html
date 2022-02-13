@@ -3,6 +3,7 @@
 
 {% block content %}
 
+
 <h1 style="text-align: center;">Books Updation</h1>
 <hr style="border: 1px solid black;  margin: 1% 20%;">
 
@@ -18,16 +19,17 @@
         <div class="mb-3">
             <label for="booksName" class="form-label">Book Name</label>
             <input type="text" class="form-control" id="booksName" name="booksName"
-                placeholder="Example input placeholder">
+                placeholder="Example input placeholder" required>
         </div>
         <div class="mb-3">
             <label for="publisher" class="form-label">Publisher</label>
             <input type="text" class="form-control" id="publisher" name="publisher"
-                placeholder="Another input placeholder">
+                placeholder="Another input placeholder" required>
         </div>
         <div class="mb-3">
             <label for="author" class="form-label">Author</label>
-            <input type="text" class="form-control" id="author" name="author" placeholder="Another input placeholder">
+            <input type="text" class="form-control" id="author" name="author" placeholder="Another input placeholder"
+                required>
         </div>
 
 
@@ -55,22 +57,23 @@
 
     <h1 style="text-align: center;">Delete Book</h1>
 
-    <form id="libraryForm" method="POST" action="/booksDeletion">
+    <form id="libraryForm" method="POST" action="/booksDeletion" {{is.valid}}>
         {% csrf_token %}
 
         <div class="mb-3">
             <label for="booksName" class="form-label">Book Name</label>
             <input type="text" class="form-control" id="booksName" name="booksName"
-                placeholder="Example input placeholder">
+                placeholder="Example input placeholder" required>
         </div>
         <div class="mb-3">
             <label for="publisher" class="form-label">Publisher</label>
             <input type="text" class="form-control" id="publisher" name="publisher"
-                placeholder="Another input placeholder">
+                placeholder="Another input placeholder" required>
         </div>
         <div class="mb-3">
             <label for="author" class="form-label">Author</label>
-            <input type="text" class="form-control" id="author" name="author" placeholder="Another input placeholder">
+            <input type="text" class="form-control" id="author" name="author" placeholder="Another input placeholder"
+                required>
         </div>
 
         <div class="container my-4 ">
